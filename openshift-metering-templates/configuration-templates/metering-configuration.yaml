@@ -23,6 +23,14 @@ spec:
     #       requests:
     #         cpu: 4
     #         memory: 2Gi
+  storage:
+    hive:
+      sharedPVC:
+        claimName: metering-nfs
+        createdPVC: true
+        size: 10Gi
+      type: sharedPVC
+    type: hive
   hive:
     spec:
       metastore:
