@@ -38,7 +38,7 @@ spec:
           create: false
       config:
         db:
-          url: "jdbc:mysql://localhost:3306/hive_metastore"
+          url: "jdbc:mysql://192.168.130.11:3306/hive_metastore"
           driver: "com.mysql.jdbc.Driver"
           username: "root"
           password: "Roothive123!"
