@@ -31,18 +31,17 @@ spec:
         size: 10Gi
       type: sharedPVC
     type: hive
-
-    hive:
-      spec:
-        metastore:
-          storage:
-            create: False
-        config:
-          db:
-            url: "jdbc:mysql://localhost:3306/hive_metastore"
-            driver: "com.mysql.jdbc.Driver"
-            username: "root"
-            password: "Roothive123!"
+  hive:
+    spec:
+      metastore:
+        storage:
+          create: False
+      config:
+        db:
+          url: "jdbc:mysql://localhost:3306/hive_metastore"
+          driver: "com.mysql.jdbc.Driver"
+          username: "root"
+          password: "Roothive123!"
     # uncomment the hive configuration lines, to use default values provided by the metering operators.
     # hive:
     #     spec:
