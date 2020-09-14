@@ -23,19 +23,11 @@ spec:
     #       requests:
     #         cpu: 4
     #         memory: 2Gi
-  storage:
-    hive:
-      sharedPVC:
-        claimName: metering-nfs
-        createPVC: true
-        size: 10Gi
-      type: sharedPVC
-    type: hive
   hive:
     spec:
       metastore:
         storage:
-          create: False
+          create: false
       config:
         db:
           url: "jdbc:mysql://localhost:3306/hive_metastore"
