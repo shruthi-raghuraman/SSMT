@@ -36,19 +36,19 @@ spec:
     name: PodCpuRequestRawDataSourceName
     type: ReportDataSource
   query: |
-  SELECT
-    timestamp '{| default .Report.ReportingStart .Report.Inputs.ReportingStart| prestoTimestamp |}' AS period_start,
-    timestamp '{| default .Report.ReportingEnd .Report.Inputs.ReportingEnd | prestoTimestamp |}' AS period_end,
-    pod,
-    namespace,
-    node,
-    sum(pod_request_cpu_core_seconds) as pod_request_cpu_core_seconds
-  FROM {| dataSourceTableName .Report.Inputs.PodCpuRequestRawDataSourceName |}
-  WHERE "timestamp" >= timestamp '{| default .Report.ReportingStart .Report.Inputs.ReportingStart | prestoTimestamp |}'
-  AND "timestamp" < timestamp '{| default .Report.ReportingEnd .Report.Inputs.ReportingEnd | prestoTimestamp |}'
-  AND dt >= '{| default .Report.ReportingStart .Report.Inputs.ReportingStart | prometheusMetricPartitionFormat |}'
-  AND dt <= '{| default .Report.ReportingEnd .Report.Inputs.ReportingEnd | prometheusMetricPartitionFormat |}'
-  GROUP BY namespace, pod, node
-  ORDER BY namespace, pod, node ASC, pod_request_cpu_core_seconds ASC
+    SELECT
+      timestamp '{| default .Report.ReportingStart .Report.Inputs.ReportingStart| prestoTimestamp |}' AS period_start,
+      timestamp '{| default .Report.ReportingEnd .Report.Inputs.ReportingEnd | prestoTimestamp |}' AS period_end,
+      pod,
+      namespace,
+      node,
+      sum(pod_request_cpu_core_seconds) as pod_request_cpu_core_seconds
+    FROM {| dataSourceTableName .Report.Inputs.PodCpuRequestRawDataSourceName |}
+    WHERE "timestamp" >= timestamp '{| default .Report.ReportingStart .Report.Inputs.ReportingStart | prestoTimestamp |}'
+    AND "timestamp" < timestamp '{| default .Report.ReportingEnd .Report.Inputs.ReportingEnd | prestoTimestamp |}'
+    AND dt >= '{| default .Report.ReportingStart .Report.Inputs.ReportingStart | prometheusMetricPartitionFormat |}'
+    AND dt <= '{| default .Report.ReportingEnd .Report.Inputs.ReportingEnd | prometheusMetricPartitionFormat |}'
+    GROUP BY namespace, pod, node
+    ORDER BY namespace, pod, node ASC, pod_request_cpu_core_seconds ASC
 
 
