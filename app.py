@@ -4,6 +4,7 @@ import signal
 from flask import Flask
 from routes.list_projects import list_projects
 from routes.list_runtime import list_runtime
+from routes.namespace_cpu_request_hourly import namespace_cpu_request_hourly
 import sys
 import os
 
@@ -11,6 +12,7 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.register_blueprint(list_projects, url_prefix="/list_projects")
 app.register_blueprint(list_runtime, url_prefix="/list_runtime")
+app.register_blueprint(namespace_cpu_request_hourly, url_prefix="/namespace_cpu_request_hourly")
 
 def signal_term_handler(signal, frame):
     app.logger.warn('got SIGTERM')
