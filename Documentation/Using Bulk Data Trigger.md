@@ -27,7 +27,9 @@ oc -n openshift-metering exec -it $(oc -n openshift-metering get pods -l app=hiv
 oc create -f openshift-meteCring-templates/reports-templates/namespace-cpu-request-daily.yaml
 ```
   - Run load script to access database and load bulk insert statements within the table
-  ```./load.sh```
+  ```
+  ./load.sh
+  ```
 
 #### Creating .sql INSERT INTO statements for bulk data
 This can be done in many different ways. The following is a quick method to convert data points into INSERT statements that minimizes manual effort.
