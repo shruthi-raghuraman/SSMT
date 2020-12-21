@@ -1,4 +1,3 @@
-from routes.query_metering_functions import *
 from flask import Blueprint,render_template
 from flask import request
 from flask.json import jsonify
