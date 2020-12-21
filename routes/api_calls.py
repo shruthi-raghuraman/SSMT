@@ -7,30 +7,25 @@ import json
 import requests
 import constants
 import dateutil.parser as dp
+from routes.QueryMeteringFactory import *
 
 list_projects = Blueprint("list_projects",__name__)
-list_runtime = Blueprint("list_runtime",__name__)
-namespace_cpu_request_hourly = Blueprint("namespace_cpu_request_hourly",__name__)
-namespace_cpu_request_daily = Blueprint("namespace_cpu_request_daily",__name__)
+namespace_cpu_request = Blueprint("namespace_cpu_request",__name__)
+
 
 utilObject=helper.Helper()
+#/reports/standard?start=2020-12-04&frequency=week
 
-@list_projects.route('/<project_name>/standard')
-def get_list_projects(project_name):
-    return get_project_reports(project_name, constants.METERING_ROUTE_LIST_ALL_PROJECTS)
+@namespace_cpu_request.route('/standard')
+def get_namespace_cpu_request():
+    #Specify api endpoint
+    QUERY = QueryMeteringFactory.retrieve_query("namespace_cpu_request")
+    #Retrieve report
+    return QUERY.get_project_reports()
 
-@list_runtime.route('/<project_name>/standard')
-def list_project_runtime_search(project_name):
-    return get_project_reports(project_name, constants.METERING_ROUTE_LIST_RUNTIME)
-
-@list_projects.route('/<project_name>/standard')
-def get_list_projects(project_name):
-    return get_project_reports(project_name, constants.METERING_ROUTE_LIST_ALL_PROJECTS)
-
-@namespace_cpu_request_hourly.route('/<project_name>/standard')
-def get_list_projects(project_name):
-    return get_project_reports(project_name, constants.METERING_ROUTE_NAMESPACE_CPU_REQUEST_HOURLY)
-
-@namespace_cpu_request_daily.route('/<project_name>/standard')
-def get_list_projects(project_name):
-    return get_project_reports(project_name, constants.METERING_ROUTE_NAMESPACE_CPU_REQUEST_DAILY)
+@list_projects.route('/standard')
+def list_project_runtime_search():
+    #Specify api endpoint
+    QUERY = QueryMeteringFactory.retrieve_query("list_projects")
+    #Retrieve report
+    return QUERY.get_project_reports()
