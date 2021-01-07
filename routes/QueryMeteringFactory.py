@@ -63,6 +63,7 @@ class NamespaceCpuRequest(IQueryMetering):
         output_dict["reports"] = data
         output_dict["request_parameters"] = {"start": request.args.get('start'), "frequency": request.args.get('frequency')}
         if len(data) == 0:
+            output_dict["reports"] = ["Reports are not Generated. Please Wait until OpenShift Cluster Collect Metrics"]
             return jsonify(output_dict)
         else:
             return jsonify(output_dict)
