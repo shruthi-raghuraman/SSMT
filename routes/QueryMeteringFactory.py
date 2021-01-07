@@ -49,7 +49,7 @@ class NamespaceCpuRequest(IQueryMetering):
         #Filter by time period specified
         if frequency == 'day':
             start = input_date
-            end = input_date
+            end = start + timedelta(days=1)
         elif frequency == 'week':
             start = input_date - timedelta(days=input_date.weekday())
             end = start + timedelta(days=6)
